@@ -1,0 +1,40 @@
+.container {
+    margin: 20px;
+    font-family: 'Mukta', sans-serif;
+}
+
+.titreCommande {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+.styled_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table-primaire th, .table-primaire td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.table-primaire th {
+    background-color: #d5d5d5;
+}
+
+.champTable1 {
+    font-weight: bold;
+}
+
+.champTable {
+    color: #555;
+    background: #c4c4a8;
+}
+
+
+.table-primaire {
+    overflow-x: auto;
+}

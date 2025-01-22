@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+/* Fichier de style pour le template fiche_produit. */
+
+.Mes_info_principales{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.Titre_Produit{
+    font-family: "Open Sans";
+    display: flex;
+    justify-content: center;
+}
+
+.BoutonAddPanier{
+    border: 2px solid black;
+    font-family: "League Gothic";
+    font-size: 35px;
+    background-color: transparent;
+    border-radius: 50px;
+    min-height: 50px ;
+    min-width: 200px;
+    text-align: center;
+    box-shadow: 0 0 5px #605c5c;
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s ease-in-out;
+    color:black;
+}
+
+.BoutonAddPanier::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: black;
+    z-index: -1;
+    clip-path: ellipse(0px 300px at 100%);
+    transition: 0.2s ease-in-out;
+    border-radius: 50px;
+}
+
+.BoutonAddPanier:hover{
+    color: white;
+    box-shadow: 0 0 5px #ece1e1, 0 0 25px #ece1e1, 0 0 40px #ece1e1;
+    border-radius: 50px;
+}
+
+.BoutonAddPanier:hover::before{
+    clip-path: ellipse(300px 300px at 100%);
+    border-radius: 50px;
+}
+
+.BoutonAddPanier:active{
+    transform: scale(0.8);
+}
+
+.maBoxImageProduit{
+    margin: 40px;
+}
+.MonImageProduit{
+    max-width: 600px;
+    max-height: 600px;
+    border-radius: 20px;
+    border:2px solid black;
+
+}
+
+.Box_Infos_Produits{
+    background-color: #F8F3F2;
+    border: 1px solid black;
+    border-radius: 10px;
+    min-width: 10%;
+    font-family: 'Mukta', sans-serif;
+}
+h4{
+    margin-left: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.Texte_explique_produit{
+    margin: 0 auto;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    max-width: 1000px;
+    width:100%;
+    font-size: 20px;
+    margin-bottom: 75px;
+}

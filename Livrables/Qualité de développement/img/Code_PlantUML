@@ -1,0 +1,298 @@
+@startuml
+
+!define Color_Entity #98FB98
+
+
+
+class User Color_Entity {
+  - id: int
+  - surname: String
+  - name: String
+  - dateOfBirth: DateTimeInterface
+  - email: String
+  - role: Array = ["Role_USER"]
+  - plainPassword: String
+  - password: String
+  - panier: Panier
+  - commande: Commande
+  + User(id: int, surname: String, name: String, dateOfBirth: DateTimeInterface, email: String, role: Array, plainPassword: String, password: String, panier: Panier, commande: Commande)
+  + getId(): int
+  + getSurname(): String
+  + getName(): String
+  + getDateOfBirth(): DateTimeInterface
+  + getEmail(): String
+  + getRole(): Array
+  + getPlainPassword(): String
+  + getPassword(): String
+  + getPanier(): Panier
+  + getCommande(): Commande
+  + setName(name: String): void
+  + setSurname(surname: String): void
+  + setDateOfBirth(dateOfBirth: DateTimeInterface): void
+  + setEmail(email: String): void
+  + setRole(role: Array): void
+  + setPlainPassword(plainPassword: String): void
+  + setPassword(password: String): void
+  + setPanier(panier: Panier): void
+  + setCommande(commande: Commande): void
+}
+
+class CodePromo Color_Entity  {
+  - id: int
+  - pourcentage: int
+  - nomCode: String
+  - nbrUse: int
+  + CodePromo(id: int, pourcentage: int, nomCode: String, nbrUse: int)
+  + factory(pourcentage: int, nomCode: String, nbrUse: int): CodePromo
+  + getId(): int
+  + getPourcentage(): int
+  + getNomCode(): String
+  + getNbrUse(): int
+}
+
+class Produit Color_Entity {
+  - id: int
+  - nom: String
+  - prix: float
+  - quantite: int
+  - categorie: String
+  - image: String
+  - sousCategorie: String
+  - description: String
+  + Produit(id: int, nom: String, prix: float, quantite: int, categorie: String, image: String, sousCategorie: String, description: String)
+  + factory(nom: String, prix: float, quantite: int, categorie: String, image: String, sousCategorie: String, description: String): Produit
+  + getId(): int
+  + getNom(): String
+  + getPrix(): float
+  + getQuantite(): int
+  + getCategorie(): String
+  + getImage(): String
+  + getSousCategorie(): String
+  + getDescription(): String
+}
+
+class Commande Color_Entity {
+  - id: int
+  - idProduit: int
+  - prix: int
+  - user: User
+  - quantite: int
+  - nomProduit: String
+  + Commande(id: int, idProduit: int, prix: int, user: User, quantite: int, nomProduit: String)
+  + getId(): int
+  + getIdProduit(): int
+  + getPrix(): int
+  + getUser(): User
+  + getQuantite(): int
+  + getNomProduit(): String
+}
+
+class Panier Color_Entity {
+  - id: int
+  - user: User
+  - produit: Produit
+  - quantite: int
+  + Panier(id: int, user: User, produit: Produit, quantite: int)
+  + factory(user: User, produit: Produit, quantite: int): Panier
+  + getId(): int
+  + getUser(): User
+  + getProduit(): Produit
+  + getQuantite(): int
+}
+
+
+!define Color_Repository #88BFF7
+
+
+
+class UserRepository Color_Repository  {
+  - registry: ManagerRegistry
+  + __construct(registry: ManagerRegistry)
+  + find(id: int): User
+  + findOneBy(criteria: array): User
+  + findAll(): array
+  + findBy(criteria: array): array
+  + deleteUser(id: int): void
+  + addUserCommande(id: int): void
+}
+
+class CodePromoRepository Color_Repository  {
+  - registry: ManagerRegistry
+  + __construct(registry: ManagerRegistry)
+  + find(id: int): CodePromo
+  + findOneBy(criteria: array): CodePromo
+  + findAll(): array
+  + findBy(criteria: array): array
+  + deleteCode(id: int): void
+  + modifyCode(id: int, pourcentage: int, nbrUse: int, nomCode: string): void
+}
+
+class CommandeRepository Color_Repository {
+  - registry: ManagerRegistry
+  + __construct(registry: ManagerRegistry)
+  + find(id: int): Commande
+  + findOneBy(criteria: array): Commande
+  + findAll(): array
+  + findBy(criteria: array): array
+}
+
+class ProduitRepository Color_Repository  {
+  - registry: ManagerRegistry
+  + __construct(registry: ManagerRegistry)
+  + find(id: int): Produit
+  + findOneBy(criteria: array): Produit
+  + findAll(): array
+  + findBy(criteria: array): array
+  + getProduitAvecFiltre(filtres: array, categorie: string): array
+  + modifierProduit(nom: string, prix: float, quantite: int, categorie: string, image: string, sousCategorie: string, description: string): void
+  + deleteProduit(id: int): void
+}
+
+class PanierRepository Color_Repository {
+  - registry: ManagerRegistry
+  + __construct(registry: ManagerRegistry)
+  + find(id: int): Panier
+  + findOneBy(criteria: array): Panier
+  + findAll(): array
+  + findBy(criteria: array): array
+  + ajouterPanier(idProduit: int, idUser: int): void
+  + augmenterQuantite(idPanier: int): void
+  + baisserQuantite(idPanier: int): void
+}
+
+!define Color_Base #f38b89
+
+
+
+class BaseController Color_Base  {
+  - panierRepository: PanierRepository
+  - environment: Environment
+  + __construct(panierRepository: PanierRepository, environment: Environment)
+  + addGlobalVariable(): JsonResponse
+}
+
+!define Color_Controller #fbab59
+
+class AboutUsController Color_Controller {
+  + index(): Response
+}
+
+class HomeController Color_Controller{
+  + index(): Response
+}
+
+class LoginController Color_Controller{
+  - authenticationUtils: AuthenticationUtils
+  + login(authenticationUtils: AuthenticationUtils): Response
+  + logout(): void
+}
+
+class ContactController Color_Controller{
+  + index(): Response
+}
+
+class CategorieController Color_Controller {
+  + index(): Response
+  + addPanier(panierRepository: PanierRepository,id:int produitRepository: ProduitRepository): Response
+}
+
+class UserController Color_Controller{
+  - emailVerifiy: EmailVerifiy
+  - entityManager: EntityManagerInterface
+  + __construct(emailVerifiy: EmailVerifiy, panierRepository: PanierRepository)
+  + index(): Response
+  + formEditAccount(): Response
+  + editAccount(entityManager: EntityManagerInterface): Response
+}
+
+class AdminController Color_Controller{
+  + affichageProduitAdmin(produitRepository: ProduitRepository, userRepository: UserRepository, codePromoRepository: CodePromoRepository): Response
+  + ajoutProduitForm(): Response
+  + addProduct(entityManager: EntityManagerInterface): RedirectResponse
+  + deleteProduct(id: int, produitRepository: ProduitRepository): RedirectResponse
+  + updateProduitForm(id: int, produitRepository: ProduitRepository): Response
+  + updateProduit(id: int, produitRepository: ProduitRepository): RedirectResponse
+  + deleteUser(entityManager: EntityManagerInterface,userRepository: UserRepository): RedirectResponse
+  + updateCodePromo(id: int, codePromoRepository: CodePromoRepository): Response
+  + ajouterCodeForm(): Response
+  + addCode(entityManager: EntityManagerInterface): RedirectResponse
+  + deleteCode(entityManager: EntityManager,respository_code_promo:CodePromoRepository): RedirectResponse
+}
+
+class PanierController Color_Controller {
+  + index(panierRepository: PanierRepository, produitRepository: ProduitRepository, codePromoRepository: CodePromoRepository): Response
+  + getProduitPanier(panierRepository: PanierRepository, produitRepository: ProduitRepository): array
+  + getNombreProduits(): JsonResponse
+  + getPrixTotal(panierRepository: PanierRepository, produitRepository: ProduitRepository): float
+  + appliquerCodePromo(codePromoRepository: CodePromoRepository, code: string): array
+  + addQuantite(panierRepository: PanierRepository, produitRepository: ProduitRepository, id: int): RedirectResponse
+  + deleteQuantite(panierRepository: PanierRepository,id: int): RedirectResponse
+  + supprimerProduitPanier(panierRepository: PanierRepository,id: int): RedirectResponse
+}
+
+class RegistrationController Color_Controller {
+  - emailVerifier: EmailVerifier
+  + __construct(emailVerifier: EmailVerifier, panierRepository: PanierRepository, environment: Environment)
+  + register(request: Request, userPasswordHasher: UserPasswordHasherInterface, entityManager: EntityManagerInterface): Response
+  + verifyUserEmail(request: Request, translator: TranslatorInterface): Response
+}
+
+class ProduitController Color_Controller {
+  + fichierProduit(produitRepository: ProduitRepository, id: int): Response
+  + produitCategorie(produitRepository: ProduitRepository, categorie: string): Response
+  + produitSousCategorie(produitRepository: ProduitRepository, sousCategorie: string): RedirectResponse
+  + listeSousCat(listeProduit: array): array
+  + filtreProduit(produitRepository: ProduitRepository, categorie: string): Response
+}
+
+class CommandeController Color_Controller {
+  + index(CommandeRepository: CommandeRepository: Response
+  + ajoutCommande(repository_commande:CommandeRepository)
+  
+
+}
+
+
+
+BaseController <|-- PanierController
+BaseController <|-- RegistrationController
+BaseController <|-- ProduitController
+BaseController <|-- AdminController
+BaseController <|-- AboutUsController
+BaseController <|-- HomeController
+BaseController <|-- LoginController
+BaseController <|-- ContactController
+BaseController <|-- CategorieController
+BaseController <|-- UserController
+BaseController <|-- CommandeController
+
+
+UserRepository --|> EntityRepository
+CodePromoRepository --|> EntityRepository
+CommandeRepository --|> EntityRepository
+ProduitRepository --|> EntityRepository
+PanierRepository --|> EntityRepository
+
+UserRepository --> User: Uses
+CodePromoRepository --> CodePromo: Uses
+ProduitRepository --> Produit: Uses
+CommandeRepository --> Commande: Uses
+PanierRepository --> Panier: Uses
+
+CategorieController --> ProduitController : Uses
+AdminController --> UserRepository : Uses
+AdminController --> ProduitRepository : Uses
+AdminController --> CodePromoRepository : Uses
+PanierController --> UserRepository : Uses
+PanierController --> PanierRepository : Uses
+PanierController --> CodePromoRepository : Uses
+PanierController --> ProduitRepository : Uses
+RegistrationController --> PanierRepository : Uses
+ProduitController --> ProduitRepository : Uses
+CommandeController --> CommandeRepository: Uses
+CommandeController --> ProduitRepository: Uses
+CommandeController --> PanierRepository: Uses
+
+UserRepository  *-- UserController: Uses
+PanierRepository *-- UserController : Uses
+@enduml

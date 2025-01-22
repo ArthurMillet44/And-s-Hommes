@@ -1,0 +1,192 @@
+
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Open+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,500;1,300;1,400;1,500&display=swap')    ;
+@font-face {
+    font-family: 'Horizon';
+    src: url('font/Horizon/horizon.otf') format('opentype'),
+    url('font/Horizon/horizon_outlined.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Fichier de style pour l'entête de la page: elle nous servira dans toutes les pages. Ce fichier est utilisé par base.html.twig qui sera étendu dans toutes les autres templates. */
+
+h1,body{
+    margin:0;
+}
+
+body{
+    background-color: #e5e5e5;
+}
+
+.bandeau-principal{
+    width: 100%;
+    background-color: #FFFFFF;
+    padding-bottom: 15px;
+    padding-top: 0.1%;
+}
+
+
+
+.TitreAndIcons{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+}
+.TitrePage{
+    font-family: 'Kanit', sans-serif;
+    display: flex;
+    font-size:calc(20px + 2vw);
+    justify-content: center;
+    grid-column: 2;
+}
+
+.iconesNav {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5%;
+    position: relative; /* Pour que la position absolue de la notification soit relative à cet élément */
+}
+.styleIcon {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    grid-column: 3;
+}
+
+
+
+.styleIcon:hover {
+    display: block; /* Afficher la notification au survol de l'icône du panier */
+}
+
+#panier-count{
+
+    background-color: red;
+    color:white;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.ChampRecherche{
+    display: flex;
+    justify-content: center;
+}
+#champRecherche{
+
+    min-width: 30%;
+
+    padding-left: 15px;
+    font-family: "Open sans";
+
+    min-height: 25px;
+    border-radius: 20px;
+
+    color: black;
+    border: #afafaf 2px solid;
+    transition:border 0.5s;
+
+}
+#champRecherche:focus{
+
+
+    outline: none;
+    border:solid 2px black;
+
+}
+.boutonRecherche{
+    height: calc(20px + 0.5vw);
+    width: calc(20px + 0.5vw);
+}
+.categorie{
+    margin: 0;
+    font-family: "League Gothic";
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #dcdcdc, #949494);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    align-items: center;
+    height: 130px;
+    list-style-type: none;
+}
+
+.categorie >li {
+    text-decoration: black;
+    text-align: center;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    transition:background-color 0.5s;
+    border-radius: 5px;
+
+}
+
+
+
+.lien_categorie{
+    text-decoration: none;
+    color:black;
+
+}
+
+
+
+.baliseA {
+    position: relative;
+    padding: 1rem 0 0.5rem;
+    color: #262626;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.baliseA::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: 50% 50%;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(73, 73, 73, 0.8);
+    transition: transform 250ms;
+}
+.baliseA:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+
+/* Styles pour l'icône du panier */
+.iconesNav {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5%;
+    position: relative; /* Pour que la position absolue de la notification soit relative à cet élément */
+}
+
+.styleIcon {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    grid-column: 3;
+}
+
+#boutonRetourHaut {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: white;
+    border: black;
+    border-radius: 50%;
+}
+
+#particles-js{
+    height: 150px;
+    background-color: white;
+
+}

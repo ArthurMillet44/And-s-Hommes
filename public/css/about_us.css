@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600&display=swap');
+
+
+/* Fichier de style pour le template About_us. */
+
+
+
+.TextAboutUs{
+    margin-top:60px;
+    margin-right: 150px;
+    margin-left:150px;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    font-size:25px;
+    color:black;
+}
+
+.TextAboutUs2 {
+    margin-top:60px;
+    margin-right: 270px;
+    margin-left:270px;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    font-size:25px;
+    color:black;
+}
+
+
+

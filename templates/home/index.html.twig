@@ -1,0 +1,181 @@
+
+{# fichier html de la page d'acceuil du site #}
+{% extends 'base.html.twig' %}
+
+    {% block stylesheets %}
+        <link href="{{asset('css/home.css')}}" rel="stylesheet" />
+    {% endblock %}
+
+
+    {% block title %}And's Homme{% endblock %}
+
+
+{% block body %}
+
+
+
+
+    {% set tabCATEGORIE=['Soins Visage','Produits barbe','Produit cheveux','Parfum'] %}
+
+        <main>
+
+            <div class="ToutLesProduits">
+                <!--On créer les boites de catégories contenant les produits en parcourant le tableau de categories-->
+                <div class="Box_Categorie_Produit">
+                    <div class="Titre_And_Box">
+                        <div class="Titre_Box_Categorie"><a class="imageCliquable" href="/produit/categorie/Soins Visage"><strong>Soin Visage</strong></a></div>
+                        <div class="Box_liste_Produits_Categorie">
+
+
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Masque</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Soins Visage/Masque"><img  src="images/images_Produits/Soins Visage/masqueAdo.jpg"></a>
+                                </div>
+                            </div>
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Crème</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Soins Visage/Crèmes"><img src="images/images_Produits/Soins Visage/crème1.jpg"></a>
+                                </div>
+
+                            </div>
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Gommage</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Soins Visage/Gommage"><img src="images/images_Produits/Soins Visage/exfoliantPeauAbime.jpg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="AlignButtonDecouvrir">
+                        <button type="button" class="BoutonDECOUVRIR" onclick="window.location.href= '/produit/categorie/Soins Visage'"><span></span>Decouvrir</button>
+                    </div>
+                </div>
+
+                <div class="Box_Categorie_Produit">
+
+                    <div class="Titre_And_Box">
+                        <div class="Titre_Box_Categorie"><a class="imageCliquable" href="/produit/categorie/Barbe"><strong>Produits Barbe</strong></a></div>
+
+                        <div class="Box_liste_Produits_Categorie">
+
+
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Huile</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Barbe/Huile Barbe"><img  src="images/images_Produits/Barbe/huileBarbeBrune.jpg"></a>
+                                </div>
+                            </div>
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Shampoing</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Barbe/Shampoing Barbe"><img src="images/images_Produits/Barbe/shampoingBarbeForet.jpg"></a>
+                                </div>
+
+                            </div>
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Lots</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Barbe/Lot Barbe"><img src="images/images_Produits/Barbe/LotBarbePeigne.jpg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="AlignButtonDecouvrir">
+                        <button type="button" class="BoutonDECOUVRIR" onclick="window.location.href= '/produit/categorie/Barbe'"><span></span>Decouvrir</button>
+                    </div>
+                </div>
+
+
+                <div class="Box_Categorie_Produit">
+
+                    <div class="Titre_And_Box">
+                        <div class="Titre_Box_Categorie"><a class="imageCliquable" href="/produit/categorie/Produit Cheveux"><strong>Produits Cheveux</strong></a></div>
+
+                        <div class="Box_liste_Produits_Categorie">
+
+
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Couleur</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Produit Cheveux/Couleur"><img  src="images/images_Produits/Produit Cheveux/CouleurNoir.jpg"></a>
+                                </div>
+                            </div>
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Shampoing</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Produit Cheveux/Shampoing"><img src="images/images_Produits/Produit Cheveux/ShampoingCharbon.jpg"></a>
+                                </div>
+
+                            </div>
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Cire</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Produit Cheveux/Gel_Cire_Laque"><img src="images/images_Produits/Produit Cheveux/cire.jpg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="AlignButtonDecouvrir">
+                        <button type="button" class="BoutonDECOUVRIR"  onclick="window.location.href= '/produit/categorie/Produit Cheveux'"><span></span>Decouvrir</button>
+                    </div>
+                </div>
+
+
+
+                <div class="Box_Categorie_Produit">
+
+                    <div class="Titre_And_Box">
+                        <div class="Titre_Box_Categorie"><a class="imageCliquable" href="/produit/categorie/Parfum"><strong>Parfum</strong></a></div>
+
+                        <div class="Box_liste_Produits_Categorie">
+
+
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Parfum</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Parfum/Parfum"><img  src="images/images_Produits/Parfum/parfumNatural.jpg"></a>
+                                </div>
+                            </div>
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Déodorant</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Parfum/Deodorant"><img src="images/images_Produits/Parfum/DeodorantSauvage.jpg"></a>
+                                </div>
+
+                            </div>
+
+                            <div class="Box_Le_Produit">
+                                <h3 class="Nom_sous_Categorie">Lot</h3>
+                                <div class="Image_Produit">
+                                    <a href="/produit/SousCategorie/Parfum/Lot"><img src="images/images_Produits/Parfum/Lot2ParfumNat.jpg"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="AlignButtonDecouvrir">
+                        <button type="button" class="BoutonDECOUVRIR"  onclick="window.location.href= '/produit/categorie/Parfum'"><span></span>Decouvrir</button>
+                    </div>
+                </div>
+
+
+
+
+
+                </div>
+
+
+
+            </div>
+
+       </main>
+    <script src="/Animations/particles.js"></script>
+    <script src="/Animations/particles.min.js"></script>
+    <script src="/Animations/app.js"></script>
+{% endblock %}
+

@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Mukta:wght@500&family=Oswald&display=swap');
+
+
+/* Fichier de style pour le template registration (création de compte). */
+
+
+body{
+    background-image: url("../images/fondSobre4.jpg");
+}
+
+.grid-place{
+    display: grid;
+    grid-template-areas: "a b c"
+                         "d e f"
+                         "g h i";
+    grid-template-columns: 2fr 5fr 2fr;
+    grid-template-rows: 100px 1fr 100px;
+}
+
+
+.box_register{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: e;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.8);
+    border: solid 2px black;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.text-register{
+    font-family: 'Kanit';
+    font-size: 45px;
+}
+.input_register {
+    border: solid 2px black;
+    display: flex;
+    text-align: center;
+    min-height: 50px;
+    min-width: 600px;
+    margin: 15px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    font-size: 20px;
+}
+
+.boite_naissance{
+    border: solid 2px black;
+    display: flex;
+    font-family: 'Mukta', sans-serif;
+}
+
+.label_term{
+    font-family: 'Mukta', sans-serif;
+    margin-top:15px;
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+.check_box{
+    width: 15px;
+    height: 15px;
+    border: none;
+}
+.bouton_inscrire{
+    display: flex;
+    text-align: center;
+    align-self: center;
+    font-family: 'Mukta', sans-serif;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color:black;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 2px solid black;
+    box-shadow: 0 0 5px #c0bebe, 0 0 25px #ccc9c9, 0 0 40px #d0cccc;
+}
+
+.bouton_inscrire:hover{
+    background-color: black;
+    color: white;
+}
+
+label.date{
+    display: block;
+    text-align: center;
+    font-family: 'Mukta';
+}

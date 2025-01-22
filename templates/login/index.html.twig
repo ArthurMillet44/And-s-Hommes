@@ -1,0 +1,67 @@
+
+{# fichier html de la page de connexion #}
+{% extends 'base.html.twig' %}
+
+{% block title %}And's Hommes| Connectez-vous {% endblock %}
+
+{% block body %}
+
+    <script src="Animations/particles.js"></script>
+    <script src="Animations/particles.min.js"></script>
+    <script src="Animations/app.js"></script>
+
+{% block stylesheets %}
+    <link href="{{asset('css/login.css')}}" rel="stylesheet" />
+{% endblock %}
+
+    <div class="grid-place">
+    <form class="form_connexion" method="post" action="{{path('app_login')}}">
+        {% if error %}
+            <div class="alert alert-danger">Votre mot de passe ou votre email est incorrect.</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                Vous êtes actuellement connecté avec le mail {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Cliquez ici pour vous déconnecter.</a>
+            </div>
+        {% endif %}
+
+        <h3 class="titre_connecter">Veuillez vous connecter.</h3>
+        <div class="area_name">
+            <input id="name_connexion" type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email"  required autofocus>
+            <label class="labelContact" for="Mail">Votre adresse mail</label>
+        </div>
+
+        <div class="area_password">
+
+            <input id="password_connexion" type="password" name="_password" id="password" class="form-control" autocomplete="current-password"  required>
+            <label class="labelContact" for="Password">Votre mot de passe</label>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        </div>
+
+
+
+        <input class="button_connecter" type="submit" value="Se connecter">
+
+        <a class="register" href= "/register">Pas de compte? Inscrivez-vous.</a>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var basDePage = document.getElementById("basDePage");
+
+                window.addEventListener('scroll', function() {
+                    var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+                    // Affiche ou masque le bandeau en fonction de la position de défilement
+                    if (scrollPosition >= document.documentElement.scrollHeight - window.innerHeight) {
+                        basDePage.style.display = "block";
+                    } else {
+                        basDePage.style.display = "none";
+                    }
+                });
+            });
+        </script>
+    </form>
+    </div>
+{% endblock %}

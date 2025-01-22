@@ -1,0 +1,117 @@
+
+{#fichier html de la page "Ajouter un Produit" pour l'admin #}
+{% extends 'base.html.twig' %}
+
+{% block head%}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+{% endblock %}
+
+
+{% block stylesheets %}
+    <link href="{{asset('css/styleAdminAjoutProd.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}Ajout de produit{% endblock %}
+
+{% block body %}
+
+    <pre class="preFormAjoutProd">
+        <form  class="formAjoutProd" action="/admin/AjouterProduit" method="POST">
+            <div class="div_test">
+                <input class="champAjouterProduit2" name="nom" type="text" required>
+                <label class="labelAjoutProd" for="NomProd">Nom du Produit</label>
+            </div>
+            <div class="div_test">
+                <input class="champAjouterProduit2" type="text" name="prix"  required>
+                <label class="labelAjoutProd" for="NomProd">Prix : xx.xx</label>
+            </div>
+             <div class="div_test">
+                <input class="champAjouterProduit2" name="quantite" type="number"  required>
+                 <label class="labelAjoutProd" for="NomProd">Quantite : 0</label>
+             </div>
+            <div class="div_test">
+
+                <input class="champAjouterProduit2" name="description" type="text"  required>
+                 <label class="labelAjoutProd" for="NomProd">Description produit</label>
+            </div>
+            <select class="champAjouterProduit" name="categories" required onchange="updateSubCategories()">
+                <option value="">--Choisissez une catégorie--</option>
+                <option value="Soins Visage">Soin visage</option>
+                <option value="Barbe">Produit barbe</option>
+                <option value="Produit Cheveux">Produit cheveux</option>
+                <option value="Parfum">Parfum</option>
+            </select>
+            <select class="champAjouterProduit" name="sous_categories" id="sousCategories">
+                <option value="">--Choisissez une sous-catégorie--</option>
+                            <!-- Les options seront mises à jour dynamiquement par JavaScript -->
+            </select>
+            <input class="champAjouterProduit" type="file" name="image" accept="image/png, image/jpeg, image/jpg" required>
+            <input class="champAjouterProduit" type="submit" value="Ajouter mon produit" name="Bouton" >
+        </form>
+
+    </pre>
+
+
+    <!-- Permet de sélectionner les sous-catégories de la catégorie et pas les sous-catégories des autres-->
+    <script>
+        // Définir la fonction updateSubCategories à un niveau global
+        function updateSubCategories() {
+            var categoriesDropdown = document.querySelector("[name='categories']");
+            var subCategoriesDropdown = document.getElementById("sousCategories");
+
+            // Vérifier que l'élément "categories" existe
+            if (categoriesDropdown) {
+                var selectedCategory = categoriesDropdown.value;
+
+                // Effacer les options existantes
+                subCategoriesDropdown.innerHTML = '<option value="">--Choisissez une sous-catégorie--</option>';
+
+                // Ajouter les nouvelles options basées sur la catégorie sélectionnée
+                var options = [];
+                if (selectedCategory === "Soins Visage") {
+                    options = ["Crèmes", "Gommage", "Masque"];
+                }
+                if(selectedCategory === "Barbe"){
+                    options = ["Huile Barbe", "Mousse à raser", "Shampoing Barbe", "Lot Barbe"];
+                }
+                if(selectedCategory === "Produit Cheveux"){
+                    options = ["Shampoing", "Gel", "Cire", "Laque", "Couleur"];
+                }
+                if(selectedCategory === "Parfum"){
+                    options = ["Parfum", "Deodorant", "Lot"];
+                }
+
+                // Ajouter les options au menu déroulant des sous-catégories
+                options.forEach(function(optionText) {
+                    var option = document.createElement("option");
+                    option.text = optionText;
+                    option.value = optionText;
+                    subCategoriesDropdown.add(option);
+                });
+
+                // Activer ou désactiver la deuxième liste déroulante en fonction de la sélection de la catégorie
+                subCategoriesDropdown.disabled = (selectedCategory === "");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Attribuer dynamiquement la fonction à l'événement onchange
+            var categoriesDropdown = document.querySelector("[name='categories']");
+            if (categoriesDropdown) {
+                categoriesDropdown.addEventListener("change", updateSubCategories);
+                var subCategoriesDropdown = document.getElementById("sousCategories");
+                subCategoriesDropdown.disabled = true;
+            }
+        });
+    </script>
+
+    <script src="Animations/particles.js"></script>
+    <script src="Animations/particles.min.js"></script>
+    <script src="Animations/app.js"></script>
+
+{% endblock %}
+

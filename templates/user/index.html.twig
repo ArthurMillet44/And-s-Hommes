@@ -1,0 +1,34 @@
+
+{# fichier Html de la page de menu pour l'utilisateur. #}
+{% extends 'base.html.twig' %}
+
+
+{% block title %}And's Hommes| Compte{% endblock %}
+
+{% block stylesheets %}
+        <link href="{{asset('css/account.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+        <script src="Animations/particles.js"></script>
+        <script src="Animations/particles.min.js"></script>
+        <script src="Animations/app.js"></script>
+
+<div class="box_pannel">
+
+            <div class="grid-place">
+                    <div class="box_bonjour">
+                            <h3 class="text_bonjour">Bonjour {{ app.user.surname }} {{ app.user.name }} !</h3>
+                            <button class="bouton_option" onclick="window.location.href='/panier'">Visualiser mon panier</button>
+                            <button class="bouton_option" onclick="window.location.href='/commande'">Consulter historique achat</button>
+                            <button class="bouton_option" onclick="window.location.href='/account/formEdit'">Modifier mon profil</button>
+                            <div class="ptite-grid-place">
+                                    <a class="ptit_bouton-deco" href="{{ path('app_logout') }}">Logout</a>
+
+                            </div>
+
+                    </div>
+
+            </div>
+</div>
+
+{% endblock %}

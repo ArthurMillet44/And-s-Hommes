@@ -1,0 +1,196 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Rubik:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Mukta:wght@500&family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+/* Fichier de style pour le template categorie. */
+
+.Les_Deux_Box{
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+}
+
+.Box_filtre{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border: solid 1px black;
+    border-radius: 20px;
+    background-color: white;
+    margin:50px;
+    padding:20px;
+    display: grid;
+    height: 600px;
+    font-family: 'Mukta', serif;
+
+
+}
+.section_prix{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.barre_séparation{
+    background-color: grey;
+    height: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+.Box_Produits_affichés {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+}
+
+@media (width<1500px){
+    .Box_Produits_affichés{
+        grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    }
+}
+@media (width<1100px){
+    .Box_Produits_affichés{
+        grid-template-columns: repeat(auto-fill, minmax(70%, 1fr));
+    }
+}
+.Box_Le_Produit{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    margin:50px;
+    break-inside: avoid;
+    margin-left: -30px;
+
+}
+
+.Nom_sous_Categorie{
+    font-family: 'Mukta', serif;
+    text-align: center;
+}
+.Image_Produit{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border:3px solid black;
+    width:200px;
+    height: 200px;
+    margin:20px;
+    border-radius: 20px;
+    transform:scale(1.1) ;
+    transition:transform 0.5s  ease;
+
+
+}
+
+.Image_Produit:hover{
+    transform: scale(1.3) perspective(45px);
+}
+
+
+
+.BoutonAppliqueFiltre{
+    font-family: 'Mukta', sans-serif;
+    font-size: 20px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    color:black;
+
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+
+}
+
+.BoutonAppliqueFiltre::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: black;
+    z-index: -1;
+    clip-path: ellipse(0px 300px at 100%);
+    transition: 0.5s ease-in-out;
+    border-radius: 50px;
+}
+
+.BoutonAppliqueFiltre:hover{
+    color: white;
+    background-color: black; ;
+    box-shadow: 0 0 5px #ece1e1, 0 0 25px #ece1e1, 0 0 40px #ece1e1;
+    border-radius: 10px;
+    transform: scale(1.15);
+}
+
+.BoutonAppliqueFiltre:hover::before{
+    clip-path: ellipse(300px 300px at 100%);
+    border-radius: 50px;
+}
+
+.min-max{
+    border: 2px lightblue solid;
+    border-radius:20px;
+    max-width: 60%;
+    text-align: center;
+    outline: none;
+}
+
+.lien-bouton{
+    align-self: center;
+}
+
+
+.imageCliquable{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    align-self: center;
+}
+
+.imageCliquable2{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    align-self: center;
+    margin-bottom: 15px;
+}
+
+
+.BoutonAjouterPanier{
+    border: 2px solid black;
+    font-family: "League Gothic";
+    font-size: 35px;
+    background-color: transparent;
+    border-radius: 50px;
+    min-height: 50px ;
+    min-width: 200px;
+    box-shadow: 0 0 5px #605c5c;
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s ease-in-out;
+    color:black;
+}
+
+.BoutonAjouterPanier::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: black;
+    z-index: -1;
+    clip-path: ellipse(0px 300px at 100%);
+    transition: 0.2s ease-in-out;
+    border-radius: 50px;
+}
+
+.BoutonAjouterPanier:hover{
+    color: white;
+    box-shadow: 0 0 5px #ece1e1, 0 0 25px #ece1e1, 0 0 40px #ece1e1;
+    border-radius: 50px;
+}
+
+.BoutonAjouterPanier:hover::before{
+    clip-path: ellipse(300px 300px at 100%);
+    border-radius: 50px;
+}
+
+.BoutonAjouterPanier:active{
+    transform: scale(0.8);
+}
+

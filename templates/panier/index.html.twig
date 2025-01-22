@@ -1,0 +1,115 @@
+
+{#fichier html de la page panier du site  #}
+
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link href="{{asset('css/panier.css')}}" rel="stylesheet" />
+{% endblock %}
+
+
+    {% block title %}And's Homme| Mon Panier{% endblock %}
+
+
+{% block body %}
+
+
+
+
+
+   <div class="Les_Deux_Box">
+       <div class="Box_Panier">
+
+            <h3 class="TextProduit">Mon Panier: {{ nombre_produits }} produit(s)</h3>
+           {% set compteur=0 %}
+           {%for produit in panier_User  %}
+            <div class="Box_unProduit">
+                <img class="Image_Produit"  src="{{ asset('images/images_Produits/')~ produit.categorie ~'/'~ produit.image }}"}}>
+
+                <div class="Text-and-Price">
+                    <h3 class="text">{{ produit.nom }}</h3>
+                    <h3 class="price">{{ produit.prix }} €</h3>
+                </div>
+
+                <div class="Box_Add_or_remove">
+                    <a href="/panier/diminuer/{{ produit.id }}" class="button_remove"  >-</a>
+                    <label class="text-quantite">Quantité ({{ quantite_produit[compteur] }})</label>
+                    <a href="/panier/augmenter/{{ produit.id }}" class="button_add" >+</a>
+                </div>
+
+                <div class="box_image">
+                    <a href="/panier/supprimer/{{ produit.id}}">
+                        <img class="Logo_poubelle" src="images/poubelle-de-recyclage.png">
+                    </a>
+
+                </div>
+            </div>
+               {% set compteur=compteur+1 %}
+           {% endfor %}
+           {% set compteur=0 %}
+
+
+        </div>
+
+
+        <div class="Box_prix">
+                    <h3 class="sous-total">Sous-Total: {{ prix_SousTotal| round(2, 'floor')}} €</h3>
+
+                    <form id="panierForm" method="POST" action="/commande/ajoutCommande" >
+                        <input class="input_code_promo"  name="input_code_promo"  type="text" placeholder="Ajouter Un code Promo">
+
+                        <select class="input_moyen_livraison"  name="livraison" required >
+                            <option value="">--Choisissez un mode de livraison--</option>
+                            <option value="Colissimo">Colissimo</option>
+                            <option value="MondialRelay">Mondial Relay</option>
+                            <option value="Chronopost">Chronopost</option>
+
+                        </select>
+
+                        <select class="input_moyen_paiement" name="moyen_paiement"  required>
+                            <option value="" >--Choisissez un mode de Paiement--</option>
+                            <option value="Carte_Bancaire">Carte Bancaire</option>
+                            <option value="Paypal">Paypal</option>
+                            <option value="Bitcoin">Bit Coin</option>
+
+                        </select>
+
+                        <h3 id="totalLabel" class="Total">Total : {{ prix_SousTotal | round(2, 'floor') }}€</h3>
+                        <input class="bouton_payer" {% if nombre_produits > 0 %} {% else %} disabled {% endif %} type="submit" value="Payer">
+                    </form>
+                </div>
+
+   </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('panierForm');
+            const totalLabel = document.getElementById('totalLabel');
+
+            form.addEventListener('input', function () {
+                const codePromoInput = document.querySelector('input[name="input_code_promo"]');
+                const codePromo = codePromoInput.value;
+
+                // Effectuer une requête AJAX pour récupérer la réduction du code promo
+                fetch(`/panier/code-promo-reduction?code_promo=${codePromo}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const codePromoReduction = data.code_promo_reduction;
+
+                        if (codePromoReduction !== null) {
+                            const totalAfterReduction = data.prix_total_apres_reduction;
+                            const roundedTotal = Math.round(totalAfterReduction * 100) / 100; // Arrondir au centième
+                            totalLabel.innerHTML = `Total (${codePromoReduction}%) : ${roundedTotal}€`;
+                        } else {
+                            const roundedTotal = Math.round(data.prix_SousTotal * 100) / 100; // Arrondir au centième
+                            totalLabel.innerHTML = `Total : ${roundedTotal}€`;
+                        }
+                    })
+                    .catch(error => console.error('Erreur lors de la récupération de la réduction du code promo:', error));
+            });
+        });
+    </script>
+
+
+
+
+{% endblock %}

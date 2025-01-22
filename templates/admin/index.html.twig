@@ -1,0 +1,193 @@
+
+{# fichier html de la page admin avec les produits les users et les codes promos. #}
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{asset('css/styleAdmin.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}Page admin{% endblock %}
+
+
+{% block body %}
+
+    <script src="Animations/particles.js"></script>
+    <script src="Animations/particles.min.js"></script>
+    <script src="Animations/app.js"></script>
+
+    <div class="container">
+        <br>
+        <br>
+        <h1 class="titreTableAdmin">Mes produits</h1>
+       <table class="styled_table">
+           <thead>
+                <tr class="table-primaire">
+                    <th class="champTable1">ID</th>
+                    <th class="champTable1">Nom</th>
+                    <th class="champTable1">Prix</th>
+                    <th class="champTable1">Quantité</th>
+                    <th class="champTable1">Description</th>
+                    <th class="champTable1">Catégorie</th>
+                    <th class="champTable1">Sous Catégorie</th>
+                    <th class="champTable1">Image</th>
+                    <th class="champTable1">update</th>
+                    <th class="champTable1">delete</th>
+                </tr>
+           </thead>
+
+           <tbody>
+                {% for produit in produits %}
+                    <!-- Cette conditionnelle permet de ne pas afficher les produits fictifs créer lors de l'ajout d'un nouveau panier -->
+                    {% if produit.nom != "rien" %}
+                        <tr class="table-primaire" style="overflow-x:auto;">
+                            <th class="champTable">{{ produit.id }}</th>
+                            <td class="champTable">{{ produit.nom }}</td>
+                            <td class="champTable">{{ produit.prix| round(2, 'floor') }} </td>
+                            <td class="champTable">{{ produit.quantite }}</td>
+                            <td class="champTable">{{ produit.description }}</td>
+                            <td class="champTable">{{ produit.categorie }}</td>
+                            <td class="champTable">{{ produit.souscategorie }}</td>
+                            <td class="champTable">{{ produit.image }}</td>
+                            <td class="champTable"><a class="baliseA" href="/admin/updateProduitForm/{{ produit.id }}">update</a></td>
+                            <td class="champTable"><a class="baliseA" href="/admin/deleteProduit/{{ produit.id }}">delete</a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+           </tbody>
+
+       </table>
+    </div>
+    <br>
+    <br>
+        <div class="divAncre">
+            <a class="ancreAjout" href="/admin/formAjouterProduit">Ajouter un produit</a>
+        </div>
+
+    <br>
+    <br>
+    <div class="container">
+        <br>
+            <h1 class="titreTableAdmin">Liste Users</h1>
+           <table class="styled_table" cellpadding="10" cellspacing="10">
+               <thead>
+                    <tr class="table-primaire">
+                        <th class="champTable1">Id</th>
+                        <th class="champTable1">Prenom</th>
+                        <th class="champTable1">Nom</th>
+                        <th class="champTable1">Date de Naissnce</th>
+                        <th class="champTable1">email</th>
+                        <th class="champTable1">role</th>
+                        <th class="champTable1">delete</th>
+                    </tr>
+               </thead>
+
+               <tbody>
+                    {% for user in users %}
+                        <!-- Cette conditionnelle permet de ne pas afficher l'admin sur la page produit et donc qu'il ne puisse pas supprimer son propre compte involontairement -->
+                        {% if user.getRoles == ["ROLE_USER"] %}
+                            <tr class="table-primaire">
+                                <th class="champTable">{{ user.id }}</th>
+                                <td class="champTable">{{ user.surname }}</td>
+                                <td class="champTable">{{ user.name }}</td>
+                                <td class="champTable">{{ user.dateOfBirth|date('Y-m-d') }}</td>
+                                <td class="champTable">{{ user.email }}</td>
+                                <td class="champTable">{{ user.getRoles[0] }}</td>
+                                <td class="champTable"><a class="baliseA" href="/admin/deleteUser/{{ user.id }}">delete</a></td>
+                            </tr>
+                        {% else%}
+                        <tr class="table-admin">
+                            <th class="champTable">{{ user.id }}</th>
+                            <td class="champTable">{{ user.surname }}</td>
+                            <td class="champTable">{{ user.name }}</td>
+                            <td class="champTable">{{ user.dateOfBirth|date('Y-m-d') }}</td>
+                            <td class="champTable">{{ user.email }}</td>
+                            <td class="champTable">{{ user.getRoles[0] }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+               </tbody>
+
+
+
+
+           </table>
+        </div>
+    <br>
+    <br>
+    <!-- Table contenant la liste des codes promos de la table-->
+    <div class="container">
+        <br>
+        <h1 class="titreTableAdmin">Liste Codes Promo</h1>
+        <table class="styled_table" cellpadding="10" cellspacing="10">
+            <thead>
+            <tr class="table-primaire">
+                <th class="champTable1">Id</th>
+                <th class="champTable1">Pourcentage</th>
+                <th class="champTable1">Nombre utilisé</th>
+                <th class="champTable1">Nom du code</th>
+                <th class="champTable1">Update</th>
+                <th class="champTable1">Delete</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for code in codes_promo %}
+                    <tr class="table-primaire">
+                        <th class="champTable">{{ code.id }}</th>
+                        <td class="champTable">{{ code.pourcentage }}</td>
+                        <td class="champTable">{{ code.nbrUse }}</td>
+                        <td class="champTable">{{ code.getNomCode }}</td>
+                        <td class="champTable"><a class="baliseA" href="/admin/updateCodePromo/{{ code.id }}">Update</a></td>
+                        <td class="champTable"><a class="baliseA" href="/admin/deleteCode/{{ code.id }}">Delete</a></td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+
+
+
+
+        </table>
+    </div>
+    <br>
+    <br>
+    <div class="divAncre">
+        <a class="ancreAjout" href="/admin/formAjouterCode">Ajouter un code</a>
+    </div>
+    <br>
+    <br>
+    <!-- Table contenant la liste des messages envoyé par les clients à l'administrateur-->
+    <div class="container">
+        <br>
+        <h1 class="titreTableAdmin">Liste Messages client</h1>
+        <table class="styled_table" cellpadding="10" cellspacing="10">
+            <thead>
+            <tr class="table-primaire">
+                <th class="champTable1">Id_user</th>
+                <th class="champTable1">Nom</th>
+                <th class="champTable1">Prénom</th>
+                <th class="champTable1">Mail</th>
+                <th class="champTable1">Message</th>
+                <th class="champTable1">Delete</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for message in messages %}
+                <tr class="table-primaire">
+                    <th class="champTable">{{ message.user.getId() }}</th>
+                    <td class="champTable">{{ message.nom }}</td>
+                    <td class="champTable">{{ message.prenom }}</td>
+                    <td class="champTable">{{ message.mail }}</td>
+                    <td class="champTable">{{ message.message }}</td>
+                    <td class="champTable"><a class="baliseA" href="/admin/deleteMessage/{{ message.id }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+
+
+
+        </table>
+    </div>
+
+{% endblock %}

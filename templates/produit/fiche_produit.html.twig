@@ -1,0 +1,70 @@
+
+{# template html dédié à une page produit quelconque #}
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{asset('css/fiche_produit.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block title %}And's Homme| {{ produit.nom }}{% endblock %}
+
+{% block body %}
+
+
+
+    <main >
+
+            <h2 class="Titre_Produit"> {{ produit.nom }}</h2>
+            <div class="Mes_info_principales">
+                <a class="BoutonAddPanier"  onclick="addToCart(event, {{ produit.id }})">Ajouter au panier</a>
+
+                <div class="maBoxImageProduit">
+                    <img class=MonImageProduit src="{{ asset('images/images_Produits/' ~ produit.categorie ~ '/' ~ produit.image) }}">
+                </div>
+                <div class="Box_Infos_Produits">
+                    <h4 class="prix">{{ produit.prix }}€</h4>
+                    <h4 class="Categorie">{{ produit.categorie }}</h4>
+                    <h4 class="Categorie"> {{ produit.getSousCategorie() }}</h4>
+                    <h4 class="Enstock"></h4>
+
+                </div>
+            </div>
+            <div class="Texte_explique_produit">
+                <p>{{ produit.description }}</p>
+            </div>
+
+
+    </main>
+
+    <script>
+        var cartNotification = document.getElementById("panier-icon");
+        // Fonction pour afficher la notification
+        function showCartNotification() {
+            cartNotification.style.display = "block";
+        }
+
+        // Fonction pour ajouter au panier
+        function addToCart(event, productId) {
+            // Afficher la notification
+            showCartNotification();
+
+            event.preventDefault();
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/categorie/addPanier/' + productId, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Afficher la notification
+                        showCartNotification();
+                        updateNbElementPanier();
+                    } else  {
+                        // Rediriger l'utilisateur vers la page de connexion
+                        window.location.href = "/login";
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+    </script>
+{% endblock %}

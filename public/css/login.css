@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Mukta:wght@500&family=Oswald&display=swap');
+
+
+/* Fichier de style pour le template de login. */
+
+body{
+    background-image: url("../images/fondSobre3.jpg");
+}
+
+.grid-place{
+    display: grid;
+    grid-template-areas: "a b c"
+                         "d e f"
+                         "g h i";
+    grid-template-columns: 2fr 5fr 2fr;
+    grid-template-rows: 100px 1fr 100px;
+}
+
+.mb-3{
+    font-family: 'Mukta', sans-serif;
+    font-size: 15px;
+}
+.form_connexion{
+
+    display: grid;
+    grid-area: e;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 2px black;
+    background-color: rgba(255,255,255,0.8);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.titre_connecter{
+    font-family: 'Kanit';
+    font-size: 40px;
+    text-align: center;
+}
+.area_name{
+    padding: 10px;
+    font-size: 20px;
+    position: relative;
+    --primary: black;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form-control{
+    all: unset;
+    color: black;
+    padding: 1rem;
+    border: 2px solid grey;
+    border-radius: 10px;
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+    background-color: white;
+    margin-top: -10px;
+}
+
+.form-control:focus{
+    border: 1px solid;
+var(--primary);
+}
+
+.form-control:is(:focus, :valid) ~ label{
+    transform: translateY(-210%) scale(0.7);
+    padding-inline: 0.3rem;
+    margin-bottom: -5px;
+    color: var(--primary);
+}
+
+.labelContact{
+    position: absolute;
+    text-align: center;
+    top:40%;
+    left: 40%;
+    color: black;
+    pointer-events: none;
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+    font-family: 'Mukta', sans-serif;
+}
+
+#name_connexion,#password_connexion{
+    text-align: center;
+    margin: 10px;
+    min-height: 50px;
+    border-radius: 20px;
+    background-color: white;
+    border: solid 2px black;
+    font-size: 20px;
+    font-family: 'Mukta', sans-serif;
+
+}
+.area_password{
+    padding: 10px;
+    font-size: 20px;
+    position: relative;
+    --primary: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.button_connecter{
+    display: flex;
+    text-align: center;
+    align-self: center;
+    font-family: 'Mukta', sans-serif;
+    font-size: 20px;
+    background-color: #ffffff;
+    color:black;
+    margin-left: 35%;
+    border-radius: 10px;
+    margin-right: 35%;
+    margin-top: 2%;
+    border: solid black 2px;
+    cursor: pointer;
+    box-shadow: 0 0 5px #ece1e1, 0 0 25px #ece1e1, 0 0 40px #ece1e1;
+}
+
+.button_connecter:hover{
+    background-color: black;
+    color: white;
+}
+
+.register {
+    font-family: 'Mukta', sans-serif;
+    text-decoration: none;
+    color: black;
+    margin: 20px;
+    margin-right: 75%;
+}

@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Mukta:wght@500&family=Oswald&display=swap');
+
+/* Fichier de style pour le template contact. */
+
+body{
+    background-image: url("../images/fondSobre.jpg");
+}
+
+.input_from{
+
+    text-align: center;
+    font-size: 20px;
+    background-color: #ffffff;
+    min-height: 30px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+.formulaire{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 150px;
+
+}
+.Formulaire_contact{
+    background-color: rgba(255,255,255,0.8);
+    border: solid 2px black;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius: 20px;
+    margin:20px;
+    padding: 50px;
+    justify-content: center;
+    display: grid;
+    grid-template-areas:
+                         "nom prenom age"
+                          ". mail ."
+                           "message message message"
+                            "envoi envoi envoi";
+
+}
+
+.placeHolderRemonte{
+    padding: 25px;
+    font-size: 20px;
+    position: relative;
+    --primary: black;
+    display: flex;
+    justify-content: center;
+}
+
+.labelContact{
+    position: absolute;
+    text-align: center;
+    top:30%;
+    color: black;
+    pointer-events: none;
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+    font-family: 'Mukta', sans-serif;
+}
+
+.input_from2{
+    all: unset;
+    color: black;
+    padding: 1rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+    background-color: white;
+    margin-top: -10px;
+}
+
+.input_from2:focus{
+    border: 1px solid;
+var(--primary);
+}
+
+.input_from2:is(:focus, :valid) ~ label{
+    transform: translateY(-160%) scale(0.7);
+    padding-inline: 0.3rem;
+    margin-bottom: -5px;
+    color: var(--primary);
+}
+
+.Formulaire_contact > #lastname{
+    margin:20px;
+    min-height:45px;
+    grid-area: nom;
+    border:2px black solid;
+}
+.Formulaire_contact>#first_name{
+    margin:20px;
+    min-height: 45px;
+    border:2px black solid;
+
+    grid-area:prenom;
+}
+
+.Formulaire_contact>#year{
+    margin:20px;
+    min-height: 45px;
+    grid-area: age;
+    border:2px black solid;
+
+}
+.Formulaire_contact>#mail{
+    margin:15px;
+    margin-left: 175px;
+    margin-right: 175px;
+    min-height: 45px;
+    border:2px black solid;
+
+    grid-area: mail;
+
+}
+.Formulaire_contact>#message{
+    margin:15px;
+    min-height: 300px;
+    border:2px black solid;
+
+    grid-area: message;
+    font-family: 'Mukta', sans-serif;
+}
+.Formulaire_contact>#envoyer{
+    min-height: 50px;
+    max-width: 220px;
+    border:2px black solid;
+    font-size: 25px;
+    grid-area: envoi;
+    margin:15px;
+    font-family: 'Mukta', sans-serif;
+}
+
+.Formulaire_contact>#contact{
+    display: flex;
+    min-height: 50px;
+    max-width: 220px;
+    border:2px black solid;
+    grid-area: contact;
+    margin:15px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+    background-color:#afaaaa;
+}
+
+.Liste_info{
+    display: flex;
+    justify-content: space-around;
+}
+.Our{
+    align-items: center;
+    display: flex;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.info-img{
+    margin:15px;
+    width: 40px;
+    height: 40px;
+}
+
+.BoutonEnvoyer{
+    border: 2px solid black;
+    font-family: "League Gothic";
+    font-size: 35px;
+    background-color: transparent;
+    border-radius: 50px;
+    min-height: 50px ;
+    min-width: 200px;
+    box-shadow: 0 0 5px #605c5c;
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s ease-in-out;
+    color:black;
+}
+
+.BoutonEnvoyer::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: black;
+    z-index: -1;
+    clip-path: ellipse(0px 300px at 100%);
+    transition: 0.5s ease-in-out;
+    border-radius: 50px;
+}
+
+.BoutonEnvoyer:hover{
+    color: white;
+    background-color: black; ;
+    box-shadow: 0 0 5px #ece1e1, 0 0 25px #ece1e1, 0 0 40px #ece1e1;
+    border-radius: 50px;
+}
+
+.BoutonEnvoyer:hover::before{
+    clip-path: ellipse(300px 300px at 100%);
+    border-radius: 50px;
+}
+
+
+

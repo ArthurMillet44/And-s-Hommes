@@ -1,0 +1,35 @@
+
+
+{#fichier html de la page "Mettre à jour le code" pour l'admin #}
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{asset('css/styleAdminAjoutProd.css')}}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}Modification du code{% endblock %}
+
+{% block body %}
+
+<script src="Animations/particles.js"></script>
+<script src="Animations/particles.min.js"></script>
+<script src="Animations/app.js"></script>
+
+<pre class="preFormAjoutProd">
+        <form action="/admin/updateCode/{{ code.id }}" method="POST">
+            <div class="div_test">
+                <input class="champAjouterProduit2" name="pourcentage" type="number" required>
+                <label class="labelAjoutProd" for="pourcentage">Pourcentage</label>
+            </div>
+            <div class="div_test">
+                <input class="champAjouterProduit2" type="number" name="nbr_use"  required>
+                <label class="labelAjoutProd" for="nbr_use">Nombre Utilisé</label>
+            </div>
+             <div class="div_test">
+                <input class="champAjouterProduit2" name="nom_code" type="text"  required>
+                 <label class="labelAjoutProd" for="nom_code">Nom du code</label>
+             </div>
+            <input class="champAjouterProduit3" type="submit" value="Modifier mon Code" required>
+        </form>
+    </pre>
+{% endblock %}

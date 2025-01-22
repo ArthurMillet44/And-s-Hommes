@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+{#  Fichier que tous les templates hériterons. Ici se trouve la l'entête du site et quelques autres paramètres importants  #}
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('images/Ands_hommes_LOGO.png')}}">
+        <link href="{{asset('css/entete.css')}}" rel="stylesheet" />
+
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+
+    </head>
+    <body>
+        <header class="header">
+            <nav class="bandeau-principal">
+                <div id="particles-js">
+                    <div class="TitreAndIcons">
+                        <h1 class="TitrePage">And's Hommes</h1>
+                        <div class="iconesNav">
+                            <a class="baliseA" href="/ -m 'account"><img class="styleIcon" src={{asset('images/utilisateur.png')}}></a>
+                            <a class="baliseA" href="/panier"><img  class="styleIcon" src={{asset('images/panier.png')}}></a>
+                            <div id="panier-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span id="panier-count">{{ nbElementPanier }}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <form method="get" action="/rechercher">
+                        <div class="ChampRecherche">
+                            <input id="champRecherche" name="requete" type="text" placeholder="Que Recherchez-vous ?">
+                            <input class="boutonRecherche" type="image" src={{asset('images/rechercher.png')}}>
+                        </div>
+                    </form>
+                </div>
+                <script src="Animations/particles.js"></script>
+                <script src="Animations/particles.min.js"></script>
+                <script src="Animations/app.js"></script>
+             </nav>
+
+
+            <ul class="categorie">
+
+                <li><a  class="lien_categorie baliseA" href="/">Accueil</a></li>
+
+                <!--Une liste qui contient toutes les catégories de produits-->
+                {% set tabCATEGORIE=['Soins Visage','Barbe','Produit Cheveux','Parfum'] %}
+                <!--On affiche les catégories sur le bandeau principal-->
+                {% for categorie in tabCATEGORIE %}
+
+                    {% set encodedUrl = categorie|url_encode %}
+                    <li><a class="lien_categorie baliseA" href="/produit/categorie/{{ encodedUrl }}">{{ categorie }}</a></li>
+
+                {% endfor %}
+                <li><a class="lien_categorie baliseA" href="/about_us">A propos de Nous</a></li>
+                <li ><a class="lien_categorie baliseA" href="/contact">Contacts</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li><a class="lien_categorie baliseA" href="{{ path('app_admin_controlleur') }}">Admin</a></li>
+                {% endif %}
+
+
+            </ul>
+
+    </header>
+        <button onclick="retourEnHaut()" id="boutonRetourHaut" title="Retour en haut">^</button>
+        <script>
+            window.onscroll = function() {
+                afficherOuMasquerBouton();
+            };
+
+            function afficherOuMasquerBouton() {
+                var boutonRetourHaut = document.getElementById("boutonRetourHaut");
+
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    boutonRetourHaut.style.display = "block";
+                } else {
+                    boutonRetourHaut.style.display = "none";
+                }
+            }
+
+            function retourEnHaut() {
+                document.body.scrollTop = 0; // Pour les navigateurs Safari
+                document.documentElement.scrollTop = 0; // Pour les autres navigateurs
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            // JavaScript avec jQuery
+            function updateNbElementPanier() {
+                $.ajax({
+                    url: '/panier/count',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        // Met à jour dynamiquement le nombre d'éléments sur la page
+                        $('#panier-count').text(response.nbElements);
+                    }
+                });
+            }
+
+
+        </script>
+        {% block body %}
+        {% endblock %}
+    </body>
+
+</html>

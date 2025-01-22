@@ -1,0 +1,59 @@
+
+{# fichier html de la page "s'inscrire" #}
+{% extends 'base.html.twig' %}
+
+{% block title %}And's Hommes| Création de compte{% endblock %}
+{% block metatags %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+
+ {% block stylesheets %}
+     <link href="{{asset('css/registration.css')}}" rel="stylesheet" />
+ {% endblock %}
+
+{% block body %}
+
+    <script src="Animations/particles.js"></script>
+    <script src="Animations/particles.min.js"></script>
+    <script src="Animations/app.js"></script>
+
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <div class="grid-place">
+        <div class="box_register">
+        <h3 class="text-register">Bienvenue ! Inscrivez-vous.</h3>
+
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.surname) }}
+        {{ form_row(registrationForm.name) }}
+        {{ form_row(registrationForm.dateOfBirth)  }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_end(registrationForm) }}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var basDePage = document.getElementById("basDePage");
+
+            window.addEventListener('scroll', function() {
+                var scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+                // Affiche ou masque le bandeau en fonction de la position de défilement
+                if (scrollPosition >= document.documentElement.scrollHeight - window.innerHeight) {
+                    basDePage.style.display = "block";
+                } else {
+                    basDePage.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

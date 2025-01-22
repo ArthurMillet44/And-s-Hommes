@@ -1,0 +1,13 @@
+
+{# fichier html pour la reception du message de confirmation d'email #}
+<h1>Merci beaucoup de vous être inscrit chez And's Hommes !</h1>
+
+<p>
+    Pour des raisons de sécurité, veuillez confirmer votre email: <br><br>
+    <a href="{{ signedUrl|raw }}">Cliquez pour confirmer</a>.
+    Le lien expira dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+
+<p>
+    Nous vous souhaitons une très bonne expérience sur notre site.
+</p>

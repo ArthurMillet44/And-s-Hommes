@@ -1,0 +1,148 @@
+
+/* Fichier de style pour le template home, la page d'accuil de notre site. */
+
+
+.ToutLesProduits{
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}
+
+.Box_Categorie_Produit {
+    display: flex;
+    margin:30px;
+    border-bottom: 5px rgba(183, 175, 175, 0.82) dotted;
+
+}
+
+.Box_liste_Produits_Categorie{
+    display: flex;
+    min-width: 900px;
+}
+.Titre_Box_Categorie{
+    margin-left:60px;
+    font-family: "League Gothic";
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    font-weight: 700;
+    font-size: 65px;
+    min-width: 50px;
+}
+
+
+
+.Box_Le_Produit{
+    display: flex;
+    flex-direction: column;
+    margin:50px;
+
+}
+.Nom_sous_Categorie{
+    font-family: "League Gothic";
+    font-size: 40px;
+    margin-bottom: 30px;
+    display: flex;
+    align-self: center;
+
+}
+.Image_Produit{
+  border:solid 3px black;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  padding: 10px;
+
+}
+.Image_Produit img{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    transition: transform 1s ease;
+    align-self: center;
+}
+
+.Image_Produit:hover img{
+    transform: scale(1.2);
+}
+
+.Add_Panier_Button{
+    font-family: "League Gothic";
+    font-size: 30px;
+    background-color: black;
+    color:white;
+    margin-right:40px;
+    margin-left: 40px;
+
+}
+
+
+.AlignButtonDecouvrir{
+    display: flex;
+    align-self: center;
+    margin-top: 150px;
+    margin-left:150px;
+
+}
+
+.BoutonDECOUVRIR{
+    border: 2px solid black;
+    font-family: "League Gothic";
+    font-size: 60px;
+    background-color: transparent;
+    border-radius: 50px;
+    min-height: 100px ;
+    min-width: 300px;
+    box-shadow: 0 0 5px #605c5c;
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s ease-in-out;
+}
+
+@media (width< 1450px) {
+    .BoutonDECOUVRIR{
+        font-size: 40px;
+        min-height: 40px ;
+        min-width: 150px;
+    }
+
+}
+
+
+.BoutonDECOUVRIR::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: black;
+    z-index: -1;
+    clip-path: ellipse(0px 300px at 100%);
+    transition: 0.5s ease-in-out;
+    border-radius: 50px;
+}
+
+.BoutonDECOUVRIR:hover{
+    color: white;
+    box-shadow: 0 0 5px #ece1e1, 0 0 25px #ece1e1, 0 0 40px #ece1e1;
+    border-radius: 50px;
+}
+
+.BoutonDECOUVRIR:hover::before{
+    clip-path: ellipse(300px 300px at 100%);
+    border-radius: 50px;
+}
+
+.imageCliquable{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+

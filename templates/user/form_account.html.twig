@@ -1,0 +1,38 @@
+
+{# fichier html de la page où l'utilisateur peux modifier son nom, son prénom, ainsi que son mail #}
+{% extends 'base.html.twig' %}
+
+    {% block stylesheets %}
+        <link href="{{asset('css/account.css')}}" rel="stylesheet" />
+    {% endblock %}
+
+{% block title %}And's Hommes| Changer vos informations{% endblock %}
+
+{% block body %}
+    <script src="Animations/particles.js"></script>
+    <script src="Animations/particles.min.js"></script>
+    <script src="Animations/app.js"></script>
+
+    <div class="grid-place">
+        <div class="box_bonjour">
+            <h3 class="text-register">Modifiez votre profil</h3>
+
+            <form method="post" action="/account/editAccount">
+                <div class="div_test">
+                    <input class="champTexte" name="surname" type="text" value="{{ user.surname }}" placeholder="{{ user.surname }}">
+                </div>
+                <div class="div_test">
+                    <input class="champTexte" name="name" type="text" value="{{ user.name }}" placeholder="{{ user.name }}">
+                </div>
+                <div class="div_test">
+                    <input class="champTexte" name="email" type="email" value="{{ user.email }}" placeholder="{{ user.email }}">
+                </div>
+                <div class="div_test">
+                    <input type="submit"  class="bouton_confirmation" value="Modifiez information">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}

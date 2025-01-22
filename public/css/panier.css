@@ -1,0 +1,154 @@
+
+/* Fichier de style pour le template panier. */
+
+.Les_Deux_Box{
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    margin: 50px;
+}
+.Box_Panier{
+    display: flex;
+    flex-direction: column;
+    margin:15px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.TextProduit{
+    margin:35px;
+    font-size: 40px;
+    font-family: "League Gothic";
+}
+
+.Box_unProduit{
+    display: grid;
+    grid-template-columns: 1fr 2.5fr 1fr 1fr;
+    margin: 15px;
+    justify-content: space-between;
+}
+.Image_Produit{
+    display: grid;
+    grid-column: 1;
+    width: 100%;
+    height: auto;
+    border:5px solid black;
+    border-radius: 30px;
+    margin:20px;
+}
+.Text-and-Price{
+
+    display: grid;
+    align-self: center;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+}
+.text,.price{
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 25px;
+    margin: 20px;
+}
+.Box_Add_or_remove{
+
+
+    display: flex;
+    justify-content: space-around;
+    grid-column: 3;
+    align-self: center;
+    background-color: lightgray;
+    height: 80px;
+}
+
+.button_add{
+    display: flex;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    background-color: lightgray;
+    border:none;
+    color:black;
+    align-self: center;
+
+
+}
+
+.button_remove{
+    display: flex;
+    font-size: 25px;
+
+    justify-content: flex-end;
+    text-decoration: none;
+    border:none;
+    background-color: lightgray;
+    color:black;
+    align-self: center;
+}
+.text-quantite{
+    font-family: "Open Sans";
+    align-self: center;
+}
+
+.box_image{
+    justify-self: flex-end;
+    align-self: center;
+    color: black;
+}
+
+.Logo_poubelle {
+    display: flex;
+
+}
+
+.Box_prix{
+    font-family: "Open Sans";
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding:20px;
+    margin:15px;
+    max-height: 415px;
+    min-width: 420px;
+}
+
+.code_et_validation{
+    display: flex;
+}
+
+.input_code_promo,.input_moyen_livraison,.input_moyen_paiement{
+    text-align: center;
+    border:none;
+    background-color: lightgray;
+    font-family: "Open Sans";
+    height: 50px;
+
+    margin-left:20%;
+    margin-right: 20%;
+    margin-top:25px;
+}
+
+
+.bouton_payer{
+    font-family: "League Gothic";
+    font-size: 35px;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 10px;
+    color:black;
+    margin-right: 20%;
+    margin-left: 37%;
+    padding-left: 30px;
+    padding-right: 30px;
+    cursor: pointer;
+    border-bottom: 7px solid black;
+    transition: transform 0.1s ease-in-out;
+}
+
+
+
+.bouton_payer:active{
+    transform: translateY(0, 7px);
+    border-bottom: 2px solid;
+}

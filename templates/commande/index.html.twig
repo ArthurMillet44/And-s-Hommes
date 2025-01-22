@@ -1,0 +1,50 @@
+
+{# fichier html de la page "commande" #}
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{asset('css/commande.css')}}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block title %}And's Hommes| Vos Commandes{% endblock %}
+
+
+{% block body %}
+
+    <script src="Animations/particles.js"></script>
+    <script src="Animations/particles.min.js"></script>
+    <script src="Animations/app.js"></script>
+
+
+    <div class="container">
+        <br>
+        <br>
+        <h1 class="titreCommande">Mes commandes</h1>
+
+        <table class="styled_table">
+            <thead>
+            <tr class="table-primaire">
+                <th scope="col" class="champTable1">Date</th>
+                <th scope="col" class="champTable1">Nom du produit</th>
+                <th scope="col" class="champTable1">Quantité</th>
+                <th scope="col" class="champTable1">Prix</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for commande in listeCommande %}
+                <tr class="table-primaire" style="overflow-x:auto;">
+                    <th scope="row" class="champTable">{{ commande.date|date('Y-m-d') }}</th>
+                    <td class="champTable">{{ commande.getNomProduit() }}</td>
+                    <td class="champTable">{{ commande.quantite }}</td>
+                    <td class="champTable">{{ commande.prix }}</td>
+
+
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+{% endblock %}

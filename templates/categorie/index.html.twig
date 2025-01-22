@@ -1,0 +1,100 @@
+
+{# fichier html du template des pages pour toutes les catégories. #}
+
+{% extends 'base.html.twig' %}
+{% set urlSegments = app.request.uri|split('/') %}
+{% set segment = urlSegments|last %}
+{% set categorie = segment|split('?')|first %}
+{% block stylesheets %}
+    <link href="{{asset('css/categorie.css')}}" rel="stylesheet" />
+{% endblock %}
+{% set bon_nom_categorie = categorie|replace({'%20': ' '}) %}
+
+{% block title %}And's Homme | {{ bon_nom_categorie }}{% endblock %}
+
+{% block body %}
+
+
+    <div class="Les_Deux_Box">
+        {% if filtre == false %}
+        <div class="Box_filtre" style="opacity: 0">
+            {% else %}
+            <div class="Box_filtre">
+                <form method="post" action="/produit/categorie/filtre/{{ categorie }}">
+                  <div class="section_prix">
+                      <h4>min <input class="min-max" name="prixMin" type="text" placeholder="0.0 €" ></h4>
+                      <h4>max <input class="min-max" name="prixMax" type="text" placeholder="1000.0 €"></h4>
+                  </div>
+
+                  <div class="barre_séparation"></div>
+
+                    <div class="section_sous_categorie">
+                        {% for sousCategorie in listeSousCategorie %}
+                            <h3 class="filtre">{{ sousCategorie }} <input type="radio" name="sousCategorie" value="{{ sousCategorie }}"></h3>
+                        {% endfor %}
+
+                    </div>
+                    <div class="barre_séparation"></div>
+                    <div class="section_filtre">
+                        <h3 class="filtre">Prix croissant<input name="PrixCroissant" type="checkbox" value="PrixCroissant"></h3>
+                        <h3 class="filtre">Prix décroissant<input name="PrixDecroissant" type="checkbox" value="PrixDecroissant"></h3>
+                        <h3 class="filtre">Nom Produit (A-Z)<input name="TriAZ" type="checkbox" value="TriAZ"></h3>
+                        <h3 class="filtre">Nom Produit (Z-A)<input name="TriZA" type="checkbox" value="TriZA"></h3>
+                    </div>
+                    <input type="hidden" name="categorie" value="{{ categorie }}">
+                    <input type="submit" class="BoutonAppliqueFiltre"value="Appliquer le filtre">
+                </form>
+            {% endif %}
+        </div>
+
+        <div class="Box_Produits_affichés">
+            {% for produit in listeProduit %}
+                <div class="Box_Le_Produit">
+                    <a class="imageCliquable" href="/ficheProduit/{{ produit.id }}"><h3 class="Nom_sous_Categorie">{{ produit.nom }}</h3></a>
+                    <a class="imageCliquable2" href="/ficheProduit/{{ produit.id }}"><img class="Image_Produit" src="{{ asset('images/images_Produits/')~ produit.categorie ~'/'~ produit.image }}"></a>
+                    <h3 class="Nom_sous_Categorie">{{ produit.prix }}€</h3>
+                    <a  class="lien-bouton" onclick="addToCart(event, {{ produit.id }})"><button  type="button" class="BoutonAjouterPanier">  Ajouter au Panier   </button></a>
+
+                </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+    <script>
+        var cartNotification = document.getElementById("panier-icon");
+            // Fonction pour afficher la notification
+            function showCartNotification() {
+                cartNotification.style.display = "block";
+            }
+
+            // Fonction pour ajouter au panier
+        function addToCart(event, productId) {
+            // Afficher la notification
+            showCartNotification();
+
+            event.preventDefault();
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/categorie/addPanier/' + productId, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Afficher la notification
+                        showCartNotification();
+                        updateNbElementPanier();
+                    } else  {
+                        // Rediriger l'utilisateur vers la page de connexion
+                        window.location.href = "/login";
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+
+    </script>
+
+{% endblock %}
